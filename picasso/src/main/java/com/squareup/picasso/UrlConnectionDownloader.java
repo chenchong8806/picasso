@@ -56,6 +56,10 @@ public class UrlConnectionDownloader implements Downloader {
     }
 
     HttpURLConnection connection = openConnection(uri);
+      // 此处添加该行,则HttpURLConnection可以读取过期的缓存
+      // 达到一直读取缓存的目的
+      // 但此处使用了过期的缓存后,图片左上角的来源指示不准确,用OkHttpDownloader则没有该问题
+      connection.addRequestProperty("Cache-Control","max-stale="+Integer.MAX_VALUE);
     connection.setUseCaches(true);
     if (localCacheOnly) {
       connection.setRequestProperty("Cache-Control", "only-if-cached,max-age=" + Integer.MAX_VALUE);

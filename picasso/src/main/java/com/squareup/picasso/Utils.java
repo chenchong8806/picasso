@@ -251,9 +251,9 @@ final class Utils {
           + "Note that OkHttp 2.0.0+ is supported!");
     }
 
-    return okHttpClient
+    return /*okHttpClient
         ? OkHttpLoaderCreator.create(context)
-        : new UrlConnectionDownloader(context);
+        :*/ new UrlConnectionDownloader(context);
   }
 
   static File createDefaultCacheDir(Context context) {
