@@ -105,6 +105,8 @@ public class OkHttpDownloader implements Downloader {
         if (!NetworkPolicy.shouldWriteToDiskCache(networkPolicy)) {
           builder.noStore();
         }
+        // 此处增加本地永久缓存
+        builder.maxStale(Integer.MAX_VALUE, TimeUnit.SECONDS);
         cacheControl = builder.build();
       }
     }

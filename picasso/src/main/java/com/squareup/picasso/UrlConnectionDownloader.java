@@ -64,7 +64,8 @@ public class UrlConnectionDownloader implements Downloader {
 
     HttpURLConnection connection = openConnection(uri);
     connection.setUseCaches(true);
-
+    // 此处增加本地永久缓存
+    connection.addRequestProperty("Cache-Control", "max-stale=" + Integer.MAX_VALUE);
     if (networkPolicy != 0) {
       String headerValue;
 
